@@ -905,6 +905,7 @@ GROUP BY civicrm_employer_contact_employer, civicrm_activity_id {$this->_having}
       $onHover = ts('View Contact Summary for this Contact');
       $onHoverAct = ts('View Activity Record');
     }
+    
     foreach ($rows as $rowNum => $row) {
       // if we have an activity type, format the View Activity link for use in various columns
       if ($viewLinks &&
@@ -934,6 +935,20 @@ GROUP BY civicrm_employer_contact_employer, civicrm_activity_id {$this->_having}
         $actUrl = CRM_Utils_System::url($actActionLinks[CRM_Core_Action::VIEW]['url'],
           CRM_Core_Action::replace($actActionLinks[CRM_Core_Action::VIEW]['qs'], $actLinkValues), TRUE
         );
+      }
+
+      if (array_key_exists('civicrm_employer_contact_employer', $row)) {
+        if ($value = $row['civicrm_employer_id']) {
+          if ($viewLinks) {
+            $url = CRM_Utils_System::url("civicrm/contact/view",
+              'reset=1&cid=' . $value,
+              $this->_absoluteUrl
+            );
+            $rows[$rowNum]['civicrm_employer_contact_employer_link'] = $url;
+            $rows[$rowNum]['civicrm_employer_contact_employer_hover'] = $onHover;
+          }
+          $entryFound = TRUE;
+        }
       }
 
       if (array_key_exists('civicrm_contact_contact_source', $row)) {
