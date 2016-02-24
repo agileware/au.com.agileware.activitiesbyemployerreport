@@ -464,8 +464,7 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
           strstr($clause, 'civicrm_email_contact_source_email') ||
           strstr($clause, 'civicrm_email_contact_assignee_email') ||
           strstr($clause, 'civicrm_email_contact_target_email') ||
-          strstr($clause, 'civicrm_phone_contact_target_phone') ||
-          strstr($clause, 'civicrm_employer_contact_employer')
+          strstr($clause, 'civicrm_phone_contact_target_phone')
         ) {
           $this->_selectClauses[$key] = "GROUP_CONCAT($clause SEPARATOR '; ') as $clause";
         }
@@ -872,7 +871,6 @@ GROUP BY civicrm_activity_id $having {$this->_orderBy}";
     $sql = "{$this->_select}
 FROM civireport_activity_temp_target tar
 GROUP BY civicrm_employer_contact_employer, civicrm_activity_id {$this->_having} {$this->_orderBy} {$this->_limit}";
-    $this->buildRows($sql, $rows);
 
     // format result set.
     $this->formatDisplay($rows);
