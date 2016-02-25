@@ -837,6 +837,17 @@ GROUP BY civicrm_activity_id $having {$this->_orderBy}";
       ) {
         $nullFilters[] = " civicrm_contact_contact_{$type}_id IS NULL ";
       }
+
+      if (CRM_Utils_Array::value("employer_{$type}_op", $this->_params) ==
+        'nnll' || !empty($this->_params["employer_{$type}_value"])
+      ) {
+        $nullFilters[] = " civicrm_employer_employer_{$type} IS NOT NULL ";
+      }
+      elseif (CRM_Utils_Array::value("employer_{$type}_op", $this->_params) ==
+        'nll'
+      ) {
+        $nullFilters[] = " civicrm_employer_employer_{$type} IS NULL ";
+      }
     }
 
     // 1. fill temp table with target results
