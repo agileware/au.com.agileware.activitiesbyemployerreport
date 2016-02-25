@@ -92,7 +92,7 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
             'dbAlias' => "civicrm_employer_assignee.organization_name",
           ),
           'employer_target' => array(
-            'title' => ts('Target Employer Name'),
+            'title' => ts('Employer Name'),
             'required' => TRUE,
             'no_repeat' => TRUE,
             'alias' => 'civicrm_employer_target',
@@ -131,14 +131,14 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
             'no_display' => TRUE,
           ),
           'employer_target' => array(
-            'title' => ts('Target Employer Name'),
+            'title' => ts('Employer Name'),
             'alias' => 'civicrm_employer_target',
             'operatorType' => CRM_Report_Form::OP_STRING,
           ),
         ),
         'order_bys' => array(
           'employer_target' => array(
-            'title' => ts('Target Employer Name'),
+            'title' => ts('Employer Name'),
             'default' => TRUE,
             'alias' => 'civicrm_employer_target',
             'dbAlias' => 'civicrm_employer_employer_target',
