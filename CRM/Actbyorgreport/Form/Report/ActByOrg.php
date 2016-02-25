@@ -75,32 +75,61 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
       'civicrm_employer' => array(
         'dao' => 'CRM_Contact_DAO_Contact',
         'fields' => array(
-          'contact_employer' => array(
-            'title' => ts('Employer Name'),
+          'employer_source' => array(
+            'title' => ts('Source Employer Name'),
+            'required' => FALSE,
+            'no_repeat' => TRUE,
+            'no_display' => TRUE,
+            'alias' => 'civicrm_employer_source',
+            'dbAlias' => "civicrm_employer_source.organization_name",
+          ),
+          'employer_assignee' => array(
+            'title' => ts('Assigneee Employer Name'),
+            'required' => FALSE,
+            'no_repeat' => TRUE,
+            'no_display' => TRUE,
+            'alias' => 'civicrm_employer_assignee',
+            'dbAlias' => "civicrm_employer_assignee.organization_name",
+          ),
+          'employer_target' => array(
+            'title' => ts('Target Employer Name'),
             'required' => TRUE,
             'no_repeat' => TRUE,
-            'alias' => 'civicrm_employer',
-            'dbAlias' => "civicrm_employer.organization_name",
+            'alias' => 'civicrm_employer_target',
+            'dbAlias' => "civicrm_employer_target.organization_name",
           ),
-          'id' => array(
+          'employer_source_id' => array(
             'no_display' => TRUE,
             'required' => TRUE,
-            'alias' => 'civicrm_employer',
-            'dbAlias' => "civicrm_employer.id",
+            'alias' => 'civicrm_employer_source',
+            'dbAlias' => "civicrm_employer_source.id",
+          ),
+          'employer_assignee_id' => array(
+            'no_display' => TRUE,
+            'required' => TRUE,
+            'alias' => 'civicrm_employer_assignee',
+            'dbAlias' => "civicrm_employer_assignee.id",
+          ),
+          'employer_target_id' => array(
+            'no_display' => TRUE,
+            'required' => TRUE,
+            'alias' => 'civicrm_employer_target',
+            'dbAlias' => "civicrm_employer_target.id",
           ),
         ),
         'filters' => array(
-          'organization_name' => array(
-            'title' => ts('Employer Name'),
-            'alias' => 'civicrm_employer',
+          'employer_target' => array(
+            'title' => ts('Target Employer Name'),
+            'alias' => 'civicrm_employer_target',
             'operatorType' => CRM_Report_Form::OP_STRING,
           ),
         ),
         'order_bys' => array(
-          'contact_employer' => array(
-            'title' => ts('Organisation'),
+          'employer_target' => array(
+            'title' => ts('Target Employer Name'),
             'default' => TRUE,
-            'dbAlias' => 'civicrm_employer_contact_employer',
+            'alias' => 'civicrm_employer_target',
+            'dbAlias' => 'civicrm_employer_employer_target',
           ),
         ),
       ),
@@ -396,7 +425,7 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
       $recordType != 'final'
     ) {
       $this->_nonDisplayFields[] = "civicrm_contact_contact_{$recordType}";
-      $this->_nonDisplayFields[] = "civicrm_employer_contact_employer";
+      $this->_nonDisplayFields[] = "civicrm_employer_employer_{$recordType}";
     }
     parent::select();
 
@@ -418,7 +447,9 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
           strstr($clause, 'civicrm_email_assignee.') ||
           strstr($clause, 'civicrm_email_source.') ||
           strstr($clause, 'civicrm_phone_assignee.') ||
-          strstr($clause, 'civicrm_phone_source.')
+          strstr($clause, 'civicrm_phone_source.') ||
+          strstr($clause, 'civicrm_employer_assignee.') ||
+          strstr($clause, 'civicrm_employer_source.')
         ) {
           $removeKeys[] = $key;
           unset($this->_selectClauses[$key]);
@@ -432,7 +463,9 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
           strstr($clause, 'civicrm_email_target.') ||
           strstr($clause, 'civicrm_email_source.') ||
           strstr($clause, 'civicrm_phone_target.') ||
-          strstr($clause, 'civicrm_phone_source.')
+          strstr($clause, 'civicrm_phone_source.') ||
+          strstr($clause, 'civicrm_employer_target.') ||
+          strstr($clause, 'civicrm_employer_source.')
         ) {
           $removeKeys[] = $key;
           unset($this->_selectClauses[$key]);
@@ -446,7 +479,9 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
           strstr($clause, 'civicrm_email_target.') ||
           strstr($clause, 'civicrm_email_assignee.') ||
           strstr($clause, 'civicrm_phone_target.') ||
-          strstr($clause, 'civicrm_phone_assignee.')
+          strstr($clause, 'civicrm_phone_assignee.') ||
+          strstr($clause, 'civicrm_employer_target.') ||
+          strstr($clause, 'civicrm_employer_assignee.')
         ) {
           $removeKeys[] = $key;
           unset($this->_selectClauses[$key]);
@@ -509,8 +544,8 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
                        {$this->_aliases['civicrm_activity_contact']}.record_type_id = {$targetID}
              INNER JOIN civicrm_contact civicrm_contact_target
                     ON {$this->_aliases['civicrm_activity_contact']}.contact_id = civicrm_contact_target.id
-             INNER JOIN civicrm_contact civicrm_employer
-                    ON civicrm_employer.id=civicrm_contact_target.employer_id
+             INNER JOIN civicrm_contact civicrm_employer_target
+                    ON civicrm_employer_target.id=civicrm_contact_target.employer_id
              {$this->_aclFrom}";
 
       if ($this->isTableSelected('civicrm_email')) {
@@ -537,8 +572,8 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
                        {$this->_aliases['civicrm_activity_contact']}.record_type_id = {$assigneeID}
              INNER JOIN civicrm_contact civicrm_contact_assignee
                     ON {$this->_aliases['civicrm_activity_contact']}.contact_id = civicrm_contact_assignee.id
-             INNER JOIN civicrm_contact civicrm_employer
-                    ON civicrm_employer.id=civicrm_contact_assignee.employer_id
+             INNER JOIN civicrm_contact civicrm_employer_assignee
+                    ON civicrm_employer_assignee.id=civicrm_contact_assignee.employer_id
              {$this->_aclFrom}";
 
       if ($this->isTableSelected('civicrm_email')) {
@@ -564,8 +599,8 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
                        {$this->_aliases['civicrm_activity_contact']}.record_type_id = {$sourceID}
              INNER JOIN civicrm_contact civicrm_contact_source
                     ON {$this->_aliases['civicrm_activity_contact']}.contact_id = civicrm_contact_source.id
-             INNER JOIN civicrm_contact civicrm_employer
-                    ON civicrm_employer.id=civicrm_contact_source.employer_id
+             INNER JOIN civicrm_contact civicrm_employer_source
+                    ON civicrm_employer_source.id=civicrm_contact_source.employer_id
              {$this->_aclFrom}";
 
       if ($this->isTableSelected('civicrm_email')) {
@@ -827,7 +862,11 @@ GROUP BY civicrm_activity_id $having {$this->_orderBy}";
   ADD COLUMN civicrm_phone_contact_assignee_phone VARCHAR(128),
   ADD COLUMN civicrm_phone_contact_source_phone VARCHAR(128),
   ADD COLUMN civicrm_email_contact_assignee_email VARCHAR(128),
-  ADD COLUMN civicrm_email_contact_source_email VARCHAR(128)";
+  ADD COLUMN civicrm_email_contact_source_email VARCHAR(128),
+  ADD COLUMN civicrm_employer_employer_assignee VARCHAR(128),
+  ADD COLUMN civicrm_employer_employer_assignee_id VARCHAR(128),
+  ADD COLUMN civicrm_employer_employer_source VARCHAR(128),
+  ADD COLUMN civicrm_employer_employer_source_id VARCHAR(128)";
     CRM_Core_DAO::executeQuery($tempQuery);
 
     // 3. fill temp table with assignee results
@@ -870,7 +909,7 @@ GROUP BY civicrm_activity_id $having {$this->_orderBy}";
     $this->limit();
     $sql = "{$this->_select}
 FROM civireport_activity_temp_target tar
-GROUP BY civicrm_employer_contact_employer, civicrm_activity_id {$this->_having} {$this->_orderBy} {$this->_limit}";
+GROUP BY civicrm_employer_employer_target, civicrm_activity_id {$this->_having} {$this->_orderBy} {$this->_limit}";
     $this->buildRows($sql, $rows);
 
     // format result set.
