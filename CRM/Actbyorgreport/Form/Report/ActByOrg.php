@@ -118,6 +118,18 @@ class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
           ),
         ),
         'filters' => array(
+          'employer_source' => array(
+            'title' => ts('Source Employer Name'),
+            'alias' => 'civicrm_employer_target',
+            'operatorType' => CRM_Report_Form::OP_STRING,
+            'no_display' => TRUE,
+          ),
+          'employer_assignee' => array(
+            'title' => ts('Assigneee Employer Name'),
+            'alias' => 'civicrm_employer_target',
+            'operatorType' => CRM_Report_Form::OP_STRING,
+            'no_display' => TRUE,
+          ),
           'employer_target' => array(
             'title' => ts('Target Employer Name'),
             'alias' => 'civicrm_employer_target',
