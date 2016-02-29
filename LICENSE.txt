@@ -1,4 +1,4 @@
-Package: au.com.agileware.actbyorgreport
+Package: au.com.agileware.activitiesbyemployerreport
 Copyright (C) 2016, Agileware Support <support@agileware.com.au>
 Licensed under the GNU Affero Public License 3.0 (below).
 

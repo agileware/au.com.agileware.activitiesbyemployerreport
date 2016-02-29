@@ -30,7 +30,7 @@
  * @package CRM
  * @copyright CiviCRM LLC (c) 2004-2015
  */
-class CRM_Actbyorgreport_Form_Report_ActByOrg extends CRM_Report_Form {
+class CRM_Activitiesbyemployerreport_Form_Report_ActivitiesByEmployer extends CRM_Report_Form {
   protected $_selectAliasesTotal = array();
 
   protected $_customGroupExtends = array(

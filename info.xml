@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<extension key="au.com.agileware.actbyorgreport" type="module">
-  <file>actbyorgreport</file>
-  <name>Activities By Organisation Custom Report</name>
-  <description>Provides a report template of Activities grouped by Organisation</description>
+<extension key="au.com.agileware.activitiesbyemployerreport" type="module">
+  <file>activitiesbyemployerreport</file>
+  <name>Activities By Employer Custom Report</name>
+  <description>Provides a report template of Activities grouped by Employer name</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>Agileware Support</author>
@@ -22,6 +22,6 @@
   </compatibility>
   <comments></comments>
   <civix>
-    <namespace>CRM/Actbyorgreport</namespace>
+    <namespace>CRM/Activitiesbyemployerreport</namespace>
   </civix>
 </extension>

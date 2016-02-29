@@ -1,14 +1,14 @@
 <?php
 
-require_once 'actbyorgreport.civix.php';
+require_once 'activitiesbyemployerreport.civix.php';
 
 /**
  * Implements hook_civicrm_config().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
  */
-function actbyorgreport_civicrm_config(&$config) {
-  _actbyorgreport_civix_civicrm_config($config);
+function activitiesbyemployerreport_civicrm_config(&$config) {
+  _activitiesbyemployerreport_civix_civicrm_config($config);
 }
 
 /**
@@ -18,8 +18,8 @@ function actbyorgreport_civicrm_config(&$config) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_xmlMenu
  */
-function actbyorgreport_civicrm_xmlMenu(&$files) {
-  _actbyorgreport_civix_civicrm_xmlMenu($files);
+function activitiesbyemployerreport_civicrm_xmlMenu(&$files) {
+  _activitiesbyemployerreport_civix_civicrm_xmlMenu($files);
 }
 
 /**
@@ -27,8 +27,8 @@ function actbyorgreport_civicrm_xmlMenu(&$files) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
-function actbyorgreport_civicrm_install() {
-  _actbyorgreport_civix_civicrm_install();
+function activitiesbyemployerreport_civicrm_install() {
+  _activitiesbyemployerreport_civix_civicrm_install();
 }
 
 /**
@@ -36,8 +36,8 @@ function actbyorgreport_civicrm_install() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
  */
-function actbyorgreport_civicrm_uninstall() {
-  _actbyorgreport_civix_civicrm_uninstall();
+function activitiesbyemployerreport_civicrm_uninstall() {
+  _activitiesbyemployerreport_civix_civicrm_uninstall();
 }
 
 /**
@@ -45,8 +45,8 @@ function actbyorgreport_civicrm_uninstall() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
  */
-function actbyorgreport_civicrm_enable() {
-  _actbyorgreport_civix_civicrm_enable();
+function activitiesbyemployerreport_civicrm_enable() {
+  _activitiesbyemployerreport_civix_civicrm_enable();
 }
 
 /**
@@ -54,8 +54,8 @@ function actbyorgreport_civicrm_enable() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
  */
-function actbyorgreport_civicrm_disable() {
-  _actbyorgreport_civix_civicrm_disable();
+function activitiesbyemployerreport_civicrm_disable() {
+  _activitiesbyemployerreport_civix_civicrm_disable();
 }
 
 /**
@@ -70,8 +70,8 @@ function actbyorgreport_civicrm_disable() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
-function actbyorgreport_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _actbyorgreport_civix_civicrm_upgrade($op, $queue);
+function activitiesbyemployerreport_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
+  return _activitiesbyemployerreport_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -82,8 +82,8 @@ function actbyorgreport_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_managed
  */
-function actbyorgreport_civicrm_managed(&$entities) {
-  _actbyorgreport_civix_civicrm_managed($entities);
+function activitiesbyemployerreport_civicrm_managed(&$entities) {
+  _activitiesbyemployerreport_civix_civicrm_managed($entities);
 }
 
 /**
@@ -97,8 +97,8 @@ function actbyorgreport_civicrm_managed(&$entities) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
-function actbyorgreport_civicrm_caseTypes(&$caseTypes) {
-  _actbyorgreport_civix_civicrm_caseTypes($caseTypes);
+function activitiesbyemployerreport_civicrm_caseTypes(&$caseTypes) {
+  _activitiesbyemployerreport_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -111,8 +111,8 @@ function actbyorgreport_civicrm_caseTypes(&$caseTypes) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
-function actbyorgreport_civicrm_angularModules(&$angularModules) {
-_actbyorgreport_civix_civicrm_angularModules($angularModules);
+function activitiesbyemployerreport_civicrm_angularModules(&$angularModules) {
+_activitiesbyemployerreport_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -120,8 +120,8 @@ _actbyorgreport_civix_civicrm_angularModules($angularModules);
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_alterSettingsFolders
  */
-function actbyorgreport_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _actbyorgreport_civix_civicrm_alterSettingsFolders($metaDataFolders);
+function activitiesbyemployerreport_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
+  _activitiesbyemployerreport_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
@@ -133,7 +133,7 @@ function actbyorgreport_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
  *
-function actbyorgreport_civicrm_preProcess($formName, &$form) {
+function activitiesbyemployerreport_civicrm_preProcess($formName, &$form) {
 
 } // */
 
@@ -142,14 +142,14 @@ function actbyorgreport_civicrm_preProcess($formName, &$form) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  *
-function actbyorgreport_civicrm_navigationMenu(&$menu) {
-  _actbyorgreport_civix_insert_navigation_menu($menu, NULL, array(
-    'label' => ts('The Page', array('domain' => 'au.com.agileware.actbyorgreport')),
+function activitiesbyemployerreport_civicrm_navigationMenu(&$menu) {
+  _activitiesbyemployerreport_civix_insert_navigation_menu($menu, NULL, array(
+    'label' => ts('The Page', array('domain' => 'au.com.agileware.activitiesbyemployerreport')),
     'name' => 'the_page',
     'url' => 'civicrm/the-page',
     'permission' => 'access CiviReport,access CiviContribute',
     'operator' => 'OR',
     'separator' => 0,
   ));
-  _actbyorgreport_civix_navigationMenu($menu);
+  _activitiesbyemployerreport_civix_navigationMenu($menu);
 } // */

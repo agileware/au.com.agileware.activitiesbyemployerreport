@@ -6,15 +6,15 @@
 return array (
   0 => 
   array (
-    'name' => 'CRM_Actbyorgreport_Form_Report_ActByOrg',
+    'name' => 'CRM_Activitiesbyemployerreport_Form_Report_ActivitiesByEmployer',
     'entity' => 'ReportTemplate',
     'params' => 
     array (
       'version' => 3,
-      'label' => 'Activities by Organisation',
-      'description' => 'Provides a list of Activities grouped by Organisation',
-      'class_name' => 'CRM_Actbyorgreport_Form_Report_ActByOrg',
-      'report_url' => 'au.com.agileware.actbyorgreport/actbyorg',
+      'label' => 'Activities by Employer',
+      'description' => 'Provides a list of Activities grouped by Employer name',
+      'class_name' => 'CRM_Activitiesbyemployerreport_Form_Report_ActivitiesByEmployer',
+      'report_url' => 'au.com.agileware.activitiesbyemployerreport/activitiesbyemployer',
       'component' => '',
     ),
   ),
