@@ -119,22 +119,25 @@ class CRM_Activitiesbyemployerreport_Form_Report_ActivitiesByEmployer extends CR
         ),
         'filters' => array(
           'employer_source' => array(
+            'name' => 'sort_name',
             'title' => ts('Source Employer Name'),
-            'alias' => 'civicrm_employer_target',
+            'alias' => 'civicrm_employer_source',
             'operator' => 'like',
             'type' => CRM_Report_Form::OP_STRING,
             'no_display' => TRUE,
           ),
           'employer_assignee' => array(
+            'name' => 'sort_name',
             'title' => ts('Assigneee Employer Name'),
-            'alias' => 'civicrm_employer_target',
+            'alias' => 'civicrm_employer_assignee',
             'operator' => 'like',
             'type' => CRM_Report_Form::OP_STRING,
             'no_display' => TRUE,
           ),
           'employer_target' => array(
-            'title' => ts('Employer Name'),
+            'name' => 'sort_name',
             'alias' => 'civicrm_employer_target',
+            'title' => ts('Employer Name'),
             'operator' => 'like',
             'type' => CRM_Report_Form::OP_STRING,
           ),
@@ -649,10 +652,9 @@ class CRM_Activitiesbyemployerreport_Form_Report_ActivitiesByEmployer extends CR
     $clauses = array();
     foreach ($this->_columns as $tableName => $table) {
       if (array_key_exists('filters', $table)) {
-
         foreach ($table['filters'] as $fieldName => $field) {
           $clause = NULL;
-          if ($fieldName != 'contact_' . $recordType &&
+          if ( ($fieldName != 'contact_' . $recordType && $fieldName != 'employer_' . $recordType) &&
             (strstr($fieldName, '_target') ||
               strstr($fieldName, '_assignee') ||
               strstr($fieldName, '_source')
