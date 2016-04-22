@@ -121,19 +121,22 @@ class CRM_Activitiesbyemployerreport_Form_Report_ActivitiesByEmployer extends CR
           'employer_source' => array(
             'title' => ts('Source Employer Name'),
             'alias' => 'civicrm_employer_target',
-            'operatorType' => CRM_Report_Form::OP_STRING,
+            'operator' => 'like',
+            'type' => CRM_Report_Form::OP_STRING,
             'no_display' => TRUE,
           ),
           'employer_assignee' => array(
             'title' => ts('Assigneee Employer Name'),
             'alias' => 'civicrm_employer_target',
-            'operatorType' => CRM_Report_Form::OP_STRING,
+            'operator' => 'like',
+            'type' => CRM_Report_Form::OP_STRING,
             'no_display' => TRUE,
           ),
           'employer_target' => array(
             'title' => ts('Employer Name'),
             'alias' => 'civicrm_employer_target',
-            'operatorType' => CRM_Report_Form::OP_STRING,
+            'operator' => 'like',
+            'type' => CRM_Report_Form::OP_STRING,
           ),
         ),
         'order_bys' => array(
